@@ -16,6 +16,7 @@ func RegUsers() {
 }
 
 func FindBalace() {
+	NoClien()
 	fmt.Println("Введите имя")
 	var ScanName string
 	fmt.Scan(&ScanName)
@@ -28,7 +29,15 @@ func FindBalace() {
 	}
 }
 
+func NoClien() {
+	var leng int
+	if leng == len(client) {
+		fmt.Println("Нет клиентов")
+	}
+}
+
 func ListClient() {
+	NoClien()
 	for name := range client {
 		fmt.Println(name)
 
@@ -36,6 +45,7 @@ func ListClient() {
 }
 
 func Replenishment() {
+	NoClien()
 	fmt.Println("Введите имя")
 	var ScanName string
 	fmt.Scan(&ScanName)
@@ -46,7 +56,7 @@ func Replenishment() {
 			var Replen int
 			fmt.Scan(&Replen)
 			client[name] = balance + Replen
-			fmt.Println("Вы пополнили на сумм = ", Replen)
+			fmt.Println("Вы пополнили на сумму = ", Replen)
 		} else {
 			fmt.Println("Клиент не найден")
 		}
@@ -54,6 +64,7 @@ func Replenishment() {
 }
 
 func WriteOff() {
+	NoClien()
 	var ScanName string
 	fmt.Scan(&ScanName)
 	for name, balance := range client {
@@ -63,12 +74,11 @@ func WriteOff() {
 			var Replen int
 			fmt.Scan(&Replen)
 			client[name] = balance - Replen
-			fmt.Println("C вашего  = ", Replen)
+			fmt.Println("C вашего баланса списалось = ", Replen)
 		} else {
 			fmt.Println("Клиент не найден")
 		}
 	}
-
 }
 
 func main() {
@@ -83,26 +93,20 @@ func main() {
 
 		var a int
 		fmt.Scan(&a)
-
 		if a == 1 {
 			RegUsers()
 		} else if a == 2 {
 			FindBalace()
 		} else if a == 3 {
 			ListClient()
-
 		} else if a == 4 {
 			Replenishment()
 		} else if a == 5 {
 			WriteOff()
-
 		} else if a == 6 {
 			break
-
 		} else {
 			fmt.Println("Выберите  от 1 до 5")
 		}
-
 	}
-
 }
